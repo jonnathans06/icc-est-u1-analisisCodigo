@@ -178,7 +178,7 @@ public class MetodosOrdenamiento {
         int[] arreglo = Arrays.copyOf(arregloOriginal, arregloOriginal.length);
         for (int j = 1; j < arreglo.length; j++) {
             int key = arreglo[j];
-            int i = j;
+            int i = j - 1;
 
             while (j >= 0 && arreglo[i] > key) {
                 arreglo[i + 1] = arreglo[i];
