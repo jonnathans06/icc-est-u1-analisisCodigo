@@ -5,32 +5,29 @@ public class Benchmarking {
 private MetodosOrdenamiento metodosOrdenamiento; //variable global
 
     //Constructor
-    public Benchmarking() {
-    // long inicioMillis = System.currentTimeMillis(); //nos puede dar la fecha en milisegundos //CurrentTime
-    // long inicioNano = System.nanoTime(); //nos da el tiempo desde que ejecuto la maquina
+    public Benchmarking(){
+        long iniciooMillis = System.currentTimeMillis(); //nos puede dar la fecha en milisegundos //CurrentTime
+        long inicioNano = System.nanoTime(); //nos da el tiempo desde que ejecuto la maquina
 
-    // System.out.println(inicioMillis);
-    // System.out.println(inicioNano);
+        System.out.println(iniciooMillis);
+        System.out.println(inicioNano);
 
-        metodosOrdenamiento = new MetodosOrdenamiento(); // instanciamos la variable
-        int[] arreglo = generarArregloAleatorio(1000000);
- ///       Runnable tarea = () ->
+        metodosOrdenamiento = new MetodosOrdenamiento();
+        int[] arreglo = generarArregloAleatoreo(1000000);
+        Runnable tarea = () -> metodosOrdenamiento.burbujaTradicional(arreglo);
 
-    //    double tiempoNano = medirConNanoTime(tarea);
-      //  double tiempoMillis = medirConCurrentTime(tarea);
-      long inicio = System.nanoTime();
-        metodosOrdenamiento.burbujaTradicional(arreglo);
-        long fin = System.nanoTime();
-        double tiempoNano = (fin - inicio) / 1_000_000_000.0;
-        System.out.println("Tiempo con nanoTime: " + tiempoNano + " segundos");
-        //System.out.println("Tiempo con currentTime " + tiempoMillis + " segundos");
+        double tiempoNano = medirConNanoTime(tarea);
+        System.out.println("Medir con nano --> "+tiempoNano);
+        double tiempoMillis = medirConCurrentTime(tarea);
+        System.out.println("Medir con milli --> "+tiempoMillis);
+
     }
 
-    private int[] generarArregloAleatorio(int i) {
-        int[] arreglo = new int[i];
+    private int[] generarArregloAleatoreo(int tamano){
+        int [] arreglo = new int[tamano];
         Random random = new Random();
-        for(int j = 0; j < i; j++) {
-            arreglo[j] = random.nextInt(100000); // genera un numero aleatorio entre 0 y 10000
+        for (int i = 0; i < tamano; i++) {
+            arreglo[i] = random.nextInt(100_000);
         }
         return arreglo;
     }
@@ -50,5 +47,5 @@ private MetodosOrdenamiento metodosOrdenamiento; //variable global
         long fin = System.currentTimeMillis();
         return (fin - inicio) / 1000.0; //en segundos
     }
-
+    
 }
